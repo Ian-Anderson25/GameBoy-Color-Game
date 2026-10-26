@@ -4,7 +4,7 @@
 #include "Scroll.h"
 #include "SpriteManager.h"
 
-UINT8 collision_tiles[] = {1, 2, 3, 0};
+UINT8 collision_tiles[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
 IMPORT_MAP(map);
 
