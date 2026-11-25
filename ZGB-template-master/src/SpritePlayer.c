@@ -6,6 +6,7 @@
 #include "Keys.h"
 #include "SpriteManager.h"
 #include "stdio.h"
+#include "ZGBMain.h"
 
 #define GRAVITY_DELAY 3
 #define JUMP_GRAVITY_DELAY 4
@@ -15,7 +16,7 @@
 #define JUMP_CUT_SPEED 1
 
 const UINT8 anim_idle[] = {2, 0, 1};
-const UINT8 anim_walk[] = {4, 2, 3, 4, 5};
+const UINT8 anim_walk[] = {4, 2, 3, 4, 3};
 const UINT8 anim_blow[] = {2, 6, 7};
 const UINT8 anim_blow_up[] = {2, 1, 8};
 const UINT8 anim_crouch[] = {1, 1};
@@ -36,6 +37,18 @@ void START() {
 }
 
 void UPDATE() {
+
+    UINT8 i;
+	Sprite* spr;
+
+    SPRITEMANAGER_ITERATE(i, spr) {
+		if(spr->type == SpriteCoal) {
+			if(CheckCollision(THIS, spr)) {
+				SetState(StateGame);
+			}
+		}
+	}
+
     //Double tapping one direction enables running
     if(dash_eligible_left == 1){
         if(KEY_TICKED(J_LEFT)){
